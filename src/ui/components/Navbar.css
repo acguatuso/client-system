@@ -15,15 +15,25 @@ body{
   }
 
   .navbar-text-white {
-    color: white;
+    color: rgb(0, 0, 0)
+  }
+
+  .navbar-title-text{
+    color:#474747;
   }
 
   .nav-link:hover {
     color: #4dd46d;
+    
+}
+
+.close-color:hover {
+  color: #e00000;
 }
 
 .active {
-  color: rgb(191, 161, 240) !important;
+  color: rgb(135, 75, 233) !important;
+  font-weight: bold;
 }
 
 .navbar-toggler-custom {

@@ -1,6 +1,4 @@
-
 import { useState, useRef, useEffect } from 'react';
-import { HomePageEdit } from '../../pages/HomePage';
 import './HomePageApp.css'
 import { getFirebaseDoc } from '../../api/getFirebaseDoc/getFirebaseDoc';
 import { useNavigate } from 'react-router';
@@ -19,8 +17,6 @@ export const HomePageApp = () => {
     // Redux Hooks & Access
     const user = useSelector((state: RootState) => state.auth.user);
     const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
-    //console.log(loggedIn)
-    const [showEditPage, setShowEditPage] = useState(false);
     const editRef = useRef<any>(null);
 
     useEffect(() => {
@@ -42,32 +38,13 @@ export const HomePageApp = () => {
             setTitulo(docSnap?.titulo);
             setDescripcion(docSnap?.descripcion);
 
-            //setInitialTitulo(docSnap?titulo);
-
         })()
-    }, [loggedIn, user, navigate, showEditPage]);
-
-    const handleEditClick = () => {
-        setShowEditPage(true);
-        if (editRef.current) {
-            editRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const handleCloseEdit = () => {
-        setShowEditPage(false);
-    }
-
+    }, [loggedIn, user, navigate]);
 
     return (
         <>
             {loggedIn && (
                 <div className="container mt-5">
-                    {/* Boton de editar */}
-                    <div className='text-start mb-5'>
-                        <button type="button" className='btn btn-success' onClick={handleEditClick}>Editar</button>
-                    </div>
-
                     <div className="row text-start">
                         {/* Contenido del lado izquierdo */}
                         <div className="col-sm-5">
@@ -83,14 +60,9 @@ export const HomePageApp = () => {
                                 className='img-fluid rounded'
                             />
                         </div>
-                        {showEditPage && (
-                            <HomePageEdit onClose={handleCloseEdit} initialTitulo={titulo} initialDescription={descripcion}/>
-
-                        ) }
                     </div>
                 </div>
             )}
         </>
-
     )
 }

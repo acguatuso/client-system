@@ -22,7 +22,7 @@ export const Navbar = () => {
     return (
 
         <div className="navbar-container shadow-lg">
-            <nav className="navbar navbar-expand-sm fixed-top text-dark bg-dark p-2">
+            <nav className="navbar navbar-expand-sm fixed-top text-dark bg-light p-2">
                 <div className="container-fluid">
                     {user && loggedIn && (
                         <NavLink
@@ -40,11 +40,11 @@ export const Navbar = () => {
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
                         </NavLink>)}
-                        <h4 className="navbar-text-white d-none d-sm-inline-block">
+                        <h4 className="navbar-title-text d-none d-sm-inline-block">
                             {empresaData?.titulo_footer ?? 'Unión Cantonal de Asociaciones Guatuso'}
                         </h4>
                     {/* <h4 className='navbar-text-white'>{ empresaData?.nombre ?? 'Unión Cantonal de Asociaciones Guatuso'}</h4> */}
-                    <button className="navbar-toggler navbar-dark navbar-toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler navbar-white navbar-toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse navbar-collapse-custom" id="navbarTogglerDemo01">
@@ -54,8 +54,8 @@ export const Navbar = () => {
                                 ""
                             )}
                         </div>
-
-                        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+                        {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex flex-column flex-lg-row justify-content-lg-end"> */}
+                        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex d-md-flex justify-content-md-end">
                             <ul className="navbar-nav ">
 
                                 {loggedIn && user && (
@@ -64,18 +64,21 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/home"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Inicio
                                         </NavLink>
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/mi-perfil"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Mi Perfil
                                         </NavLink>
                                         <NavLink 
-                                        className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active': '' } navbar-text-white`}
-                                        to="/students"
+                                            className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active': '' } navbar-text-white`}
+                                            to="/students"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                          >
                                         Usuarios
                                          </NavLink>
@@ -83,6 +86,7 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/Cursos"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Cursos
                                         </NavLink>
@@ -91,6 +95,7 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/servicios"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Servicios
                                         </NavLink>
@@ -98,6 +103,7 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/avisos"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Avisos
                                         </NavLink>
@@ -105,11 +111,12 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/about"
+                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Acerca
                                         </NavLink>
 
-                                        <button className="nav-item nav-link btn navbar-text-white" onClick={handleLogOut}>
+                                        <button className="nav-item nav-link btn navbar-text-white close-color" onClick={handleLogOut}>
                                             <i className="fa-solid fa-right-from-bracket me-2"></i>
                                             Cerrar Sesión
                                         </button>
