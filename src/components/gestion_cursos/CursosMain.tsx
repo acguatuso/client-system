@@ -1,58 +1,69 @@
-import { Link, useNavigate } from 'react-router-dom';
-import './CursosMain.css'
-import { RootState } from "../../redux/store";
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { FaBook, FaGraduationCap, FaUserPlus } from 'react-icons/fa';
+import './CursosMain.css';
+import { useEffect, useState } from 'react';
+import Card from './Card';
+import { Curso } from './curso.interface';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { cursosSelector, fetchCursos } from '../../redux/reducers/cursosSlice';
+
 
 function CursosMain() {
-    // LOGICA PARA REDIRECCIONAR SI NO SE ESTA LOGUEADO, PARA QUE NO SE PUEDA ACCEDER MENDIATE URL DIRECTA
-    // React-router-dom
-    const navigate = useNavigate();
-    // Redux Hooks & Access
-    const user = useSelector((state: RootState) => state.auth.user);
-    const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
-    console.log('Conectado: ', loggedIn);
-    // Redireccionar si está no logueado, y no hay usuario
-    useEffect(() => {
-        if (!loggedIn && !user) {
-            navigate("/");
-        }
-    }, [loggedIn, user, navigate]);
+  const [cursos, setCursos] = useState<Array<Curso>>([]);
+  // @ts-ignore
+  const [loading, setLoading] = useState<boolean>(false);
+  // @ts-ignore
+  const [error, setError] = useState<string | undefined>(undefined);
+  const selectedCursos = useAppSelector(cursosSelector);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(fetchCursos())
+    })()
+  }, [dispatch])
+
+  useEffect(() => { 
+    setLoading(selectedCursos.loading);
+    setError(selectedCursos.error);
+    if (!selectedCursos.loading && !selectedCursos.error) {
+      setCursos(selectedCursos.cursos);
+    }
+  }, [selectedCursos]) 
+
     
     return (
         <>
-            <h2>Gestión del Sistema de Matrícula</h2>
-            <div >
-                <div className="row">
-                    <div className="col-md-6">
-                        <Link to="/matriculaAdmin" className="card my-3 custom-card">
-                            <div className="card-body">
-                                <h5 className="card-title">Gestión de Matrícula</h5>
-                                <p className="card-text text-secondary">Administre las solicitudes de matrícula.</p>
-                                <FaUserPlus style={{ fontSize: '48px', color: "#4dd46d" }} />
-                            </div>
-                        </Link>
-
-                        <Link to="/evaluacionEstudiantes" className="card my-3 custom-card">
-                            <div className="card-body">
-                                <h5 className="card-title">Gestión de Aprobaciones</h5>
-                                <p className="card-text text-secondary">Apruebe o repruebe estudiantes en los cursos.</p>
-                                <FaGraduationCap style={{ fontSize: '48px', color: "#4dd46d" }} />
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="col-md-6">
-                        <Link to="/gestionar-cursos" className="card my-3 custom-card">
-                            <div className="card-body">
-                                <h5 className="card-title"> Gestión de Cursos</h5>
-                                <p className="card-text text-secondary">Administre la oferta de cursos disponibles.</p>
-                                <FaBook style={{ fontSize: '48px', color: "#4dd46d" }} />
-                            </div>
-                        </Link>
-                    </div>
+        <div className='row mt-4'>
+            <div className='col bg-body-secondary p-4 me-md-3'>
+                <h2 className="text-center">Cursos Disponibles</h2>
+                <div className='row row-cols-1 row-cols-md-3 g-4'>
+                    {cursos.filter(curso => curso.visible === 1).map((curso) => (
+                        <div className="col" key={curso.id}>
+                            <Card
+                                to={`/curso/${curso.nombre}`}
+                                title={curso.nombre}
+                                image={curso.download_url}
+                                visible={curso.visible}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
+            <div className='col-md-3 bg-info-subtle p-4 ms-md-3 mt-4 mt-md-0'>
+                <h2>Próximamente</h2>
+                <div className="row">
+                    {cursos.filter(curso => curso.visible === 2).map((curso) => (
+                        <div className="col" key={curso.id}>
+                            <Card
+                                to={`/curso/${curso.nombre}`}
+                                title={curso.nombre}
+                                image={curso.download_url}
+                                visible={curso.visible}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
         </>
     );
 }
