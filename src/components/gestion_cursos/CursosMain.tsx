@@ -28,8 +28,7 @@ function CursosMain() {
       setCursos(selectedCursos.cursos);
     }
   }, [selectedCursos]) 
-
-    
+  
     return (
         <>
         <div className='row mt-4'>
@@ -40,9 +39,7 @@ function CursosMain() {
                         <div className="col" key={curso.id}>
                             <Card
                                 to={`/curso/${curso.nombre}`}
-                                title={curso.nombre}
-                                image={curso.download_url}
-                                visible={curso.visible}
+                                curso={curso}
                             />
                         </div>
                     ))}
@@ -55,9 +52,7 @@ function CursosMain() {
                         <div className="col" key={curso.id}>
                             <Card
                                 to={`/curso/${curso.nombre}`}
-                                title={curso.nombre}
-                                image={curso.download_url}
-                                visible={curso.visible}
+                                curso={curso}
                             />
                         </div>
                     ))}
