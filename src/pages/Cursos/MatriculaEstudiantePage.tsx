@@ -3,40 +3,46 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { getFirebaseDocs } from '../../api/getFirebaseDocs/getFirebaseDocs';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { data_base } from '../../firebase';
+import { useState }  from 'react';
 
 
 export const MatriculaEstudiantePage = () => {
-
-
-    //TODO: Hacer Reducer para traer el id del usuario, para no hacer esto aqui
-    const fetchData = async () => {
-
-        const usuariosBaseDatos = await getFirebaseDocs('Usuarios');
-        console.log({usuariosBaseDatos})
-    }
-
-
     //TODO
-    // Quiero ver la información de la persona que inició sesión
     // Quiero tener la información del curso seleccionado.... (Esperar implementación Mariana)
-
+    
     const user = useSelector((state: RootState) => state.auth.user);
     const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
     const navigate = useNavigate();
-
+    const [idUser, setIdUser] = useState('');
+    
     useEffect(() => {
         if (!loggedIn && !user) {
             navigate("/");
-        }    
+        }
     }, [loggedIn, user, navigate]);
-
+    
+    const fetchData = async (correo: string) => {
+        // Primero tomamos la referencia de donde se encuentran todos los usuarios de Firebase
+        const usuariosRef = collection(data_base, "Usuarios");
+        // Luego, Query consulta para buscar documentos con el correo electrónico proporcionado
+        const db_query = query(usuariosRef, where("correo", "==", correo));
+        // Luego, Obtener el documento del usuario
+        const usuarioDocSnap = await getDocs(db_query);
+        // Obtener el primer documento en el QuerySnapshot
+        const primerDocumento = usuarioDocSnap.docs[0];
+        const idUsuario = primerDocumento.id;
+        setIdUser(idUsuario);
+    }
 
     const matricular = () => {
         //TODO
         // Si usuario no está postulado en curso, entonces puede mandar la solicitud
         // Si usuario se encuentra postulado, entonces evitar duplicidad
-        //console.log({user})
-        fetchData()
+        const correoUsuario = user?.correo || '';
+        fetchData(correoUsuario);
+        console.log({idUser})
     }
 
 

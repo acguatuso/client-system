@@ -20,8 +20,8 @@ export const AppRouter = () => {
       <Route path="/iniciar-sesion" element={<LoginAccountForm />} />
       <Route path="/home" element={<HomePageApp />} />
       <Route path="/crear-cuenta" element={<CreateAccountForm />} />
-      <Route path='/Cursos' element={<CursosMain />} />
-      {/* <Route path='/Cursos' element={<MatriculaEstudiantePage />} /> */}
+      {/* <Route path='/Cursos' element={<CursosMain />} /> */}
+      <Route path='/Cursos' element={<MatriculaEstudiantePage />} />
       <Route path='/gestionar-cursos' element={<GestionCursos />} />
       <Route path='/About' element={<About />} />
       {/* <Route path='/Students' element={<Students />} /> */}
