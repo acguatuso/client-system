@@ -20,6 +20,8 @@ export const MatriculaEstudiantePage = () => {
     useEffect(() => {
         if (!loggedIn && !user) {
             navigate("/");
+        } else {
+            cargarDatos();
         }
     }, [loggedIn, user, navigate]);
     
@@ -36,13 +38,19 @@ export const MatriculaEstudiantePage = () => {
         setIdUser(idUsuario);
     }
 
-    const matricular = () => {
+    //Necesario para wvitar problemas de asincronizacion cuando se matriculan los cursos. 
+    //Con esto siendo llamado desde el useEffect, en teoria carga los datos del correo del usuario para que ya esten listos por si se matriculan cursos
+    const cargarDatos = async () => {
+        const correoUsuario = user?.correo || '';
+        await fetchData(correoUsuario);
+    }
+
+    const matricular = async () => {
         //TODO
         // Si usuario no está postulado en curso, entonces puede mandar la solicitud
         // Si usuario se encuentra postulado, entonces evitar duplicidad
-        const correoUsuario = user?.correo || '';
-        fetchData(correoUsuario);
-        console.log({idUser})
+        cargarDatos();
+        console.log({ idUser });
     }
 
 
