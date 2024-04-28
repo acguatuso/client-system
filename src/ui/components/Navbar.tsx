@@ -75,13 +75,6 @@ export const Navbar = () => {
                                         >
                                             Mi Perfil
                                         </NavLink>
-                                        <NavLink 
-                                            className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active': '' } navbar-text-white`}
-                                            to="/students"
-                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
-                                         >
-                                        Usuarios
-                                         </NavLink>
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
