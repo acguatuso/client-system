@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { getFirebaseDocs } from '../../api/getFirebaseDocs/getFirebaseDocs';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { data_base } from '../../firebase';
 import { useState }  from 'react';
-
+import { getFirestore, Timestamp } from "firebase/firestore"; 
 
 export const MatriculaEstudiantePage = () => {
     //TODO
@@ -15,7 +15,7 @@ export const MatriculaEstudiantePage = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
     const navigate = useNavigate();
-    const [idUser, setIdUser] = useState('');
+    const [idUser, setIdUser] = useState(''); 
     
     useEffect(() => {
         if (!loggedIn && !user) {
@@ -45,12 +45,61 @@ export const MatriculaEstudiantePage = () => {
         await fetchData(correoUsuario);
     }
 
+    const registrarTiempoMatricula = (): Timestamp => {
+        const fecha = new Date();
+        console.log({fecha})
+
+        // Crear un objeto Timestamp de Firebase
+        const marcaDeTiempoFirebase = Timestamp.fromDate(fecha);
+
+        return marcaDeTiempoFirebase;
+    }
+
     const matricular = async () => {
         //TODO
         // Si usuario no está postulado en curso, entonces puede mandar la solicitud
         // Si usuario se encuentra postulado, entonces evitar duplicidad
         cargarDatos();
+        const idCurso = 'W1WVqGLHabray3zWIsGm';
+        const horaSol = registrarTiempoMatricula();
+
+        try{
+            const cursoRef = doc(data_base, 'Cursos', idCurso);
+            console.log({cursoRef})
+            // Obtener el documento actual del curso
+            const cursoSnap = await getDoc(cursoRef);
+            const cursoData = cursoSnap.data();
+            console.log({cursoData})
+
+            // Verificar si el array "postulados" existe en el documento del curso
+            const postuladosArray = cursoData?.postulados || [];
+
+            // Verificar si el usuario ya está en la lista de postulados
+            const usuarioExistente = postuladosArray.some((postulado: { id: string }) => postulado.id === idUser);
+
+            if (!usuarioExistente) {
+                // Agregar el nuevo postulado al array
+                postuladosArray.push({
+                    hora_solicitud: horaSol,
+                    id: idUser
+                });
+
+                // Actualizar el array "postulados" en el documento del curso
+                await updateDoc(cursoRef, {
+                    postulados: postuladosArray
+                });
+
+                console.log("Matrícula exitosa. Datos registrados en Firebase.");
+            } else {
+                console.log("El usuario ya está postulado en este curso.");
+            }
+
+        }catch (error){
+            console.error("Error al matricular: ", error);
+        }
+
         console.log({ idUser });
+        console.log({horaSol})
     }
 
 
