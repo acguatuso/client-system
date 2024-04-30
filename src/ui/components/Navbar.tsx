@@ -75,7 +75,11 @@ export const Navbar = () => {
                                         >
                                             Mi Perfil
                                         </NavLink>
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> develop
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/Cursos"
