@@ -2,13 +2,20 @@ import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
-import { getFirebaseDocs } from '../../api/getFirebaseDocs/getFirebaseDocs';
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { data_base } from '../../firebase';
 import { useState }  from 'react';
-import { getFirestore, Timestamp } from "firebase/firestore"; 
+import { Timestamp } from "firebase/firestore"; 
+import './MatriculaEstudiantePage.css';
 
-export const MatriculaEstudiantePage = () => {
+interface Props {
+    identificadorCurso: string;
+  }
+  
+export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso }) => {
+    
+   
+    
     //TODO
     // Quiero tener la información del curso seleccionado.... (Esperar implementación Mariana)
     
@@ -56,11 +63,10 @@ export const MatriculaEstudiantePage = () => {
     }
 
     const matricular = async () => {
-        //TODO
-        // Si usuario no está postulado en curso, entonces puede mandar la solicitud
-        // Si usuario se encuentra postulado, entonces evitar duplicidad
+        
+        console.log({identificadorCurso});
         cargarDatos();
-        const idCurso = 'W1WVqGLHabray3zWIsGm';
+        const idCurso = identificadorCurso;
         const horaSol = registrarTiempoMatricula();
 
         try{
@@ -69,8 +75,9 @@ export const MatriculaEstudiantePage = () => {
             // Obtener el documento actual del curso
             const cursoSnap = await getDoc(cursoRef);
             const cursoData = cursoSnap.data();
-            console.log({cursoData})
-
+            
+            const nombreCurso: string = (cursoData) ? cursoData.nombre : ''; 
+            //console.log({cursoData})
             // Verificar si el array "postulados" existe en el documento del curso
             const postuladosArray = cursoData?.postulados || [];
 
@@ -88,16 +95,14 @@ export const MatriculaEstudiantePage = () => {
                 await updateDoc(cursoRef, {
                     postulados: postuladosArray
                 });
-
-                console.log("Matrícula exitosa. Datos registrados en Firebase.");
+                alert(`La solicitud de matrícula en el curso ${nombreCurso} ha sido enviada. Te informaremos si fueste seleccionado.`);
             } else {
-                console.log("El usuario ya está postulado en este curso.");
+                alert(`Ya te encuentras en la lista de postulados del curso: ${nombreCurso}`);
             }
 
         }catch (error){
             console.error("Error al matricular: ", error);
         }
-
         console.log({ idUser });
         console.log({horaSol})
     }
@@ -108,10 +113,10 @@ export const MatriculaEstudiantePage = () => {
         {loggedIn && (
             <div>
 
-                <h1>MatriculaEstudiantePage</h1>
+                {/* <h1>MatriculaEstudiantePage</h1> */}
 
                 {/*  <!-- Button para activar el modal --> */}
-                <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalMatricula">
+                <button type="button" className="btn btn-matricula btn-sm" data-bs-toggle="modal" data-bs-target="#ModalMatricula">
                     Matricular
                 </button>
 
@@ -131,7 +136,7 @@ export const MatriculaEstudiantePage = () => {
                             {/* Footer del modal */}
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" className="btn btn-primary" onClick={matricular} data-bs-dismiss="modal">Matricular</button>
+                                <button type="button" className="btn btn-success" onClick={matricular} data-bs-dismiss="modal">Matricular</button>
                             </div>
                         </div>
                     </div>
