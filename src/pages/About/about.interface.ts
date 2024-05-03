@@ -5,11 +5,7 @@ export interface information{
   horarios: string[]
   direccion: string
 }
-  
-export interface idDelete{
-  id: string | undefined
-  image_url: string
-}
+
 
 export interface updateMainSection{
   image_principal_url: string,
@@ -30,9 +26,3 @@ export interface adsSection{
 
 }
 
-
-export interface imageList{
-  id: string
-  image_url: string
-  download_url: string
-}

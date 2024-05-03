@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { adsSection, updateMainSection, idDelete } from '../../pages/About/about.interface';
+import { adsSection, updateMainSection} from '../../pages/About/about.interface';
 import { getFirebaseDoc } from '../../api/getFirebaseDoc/getFirebaseDoc';
 import { getFirebaseDocs } from '../../api/getFirebaseDocs/getFirebaseDocs';
 
 //THUNKS
 export const fetchMainSection = createAsyncThunk(
-    'about/fetchMainSection',
+    'about/fetchMainSectionClient',
     async () => {
         const docSnap = await getFirebaseDoc('/Empresa/ZktZQqsBnqVVoL4dfRHv')
         const data: updateMainSection = {            
@@ -20,7 +20,7 @@ export const fetchMainSection = createAsyncThunk(
 )
 
 export const fetchSections = createAsyncThunk(
-    'about/fetchSections',
+    'about/fetchSectionsClient',
     async () => {
         const docSnap = await getFirebaseDocs('/Empresa/ZktZQqsBnqVVoL4dfRHv/secciones')
         return docSnap as adsSection[]
@@ -49,31 +49,7 @@ const initialState: aboutState ={
 const aboutSlice = createSlice({
     name: 'about',
     initialState,
-    reducers: {
-        mainSection(state,action: PayloadAction<updateMainSection>){
-            state.head = action.payload
-        },
-        adsSections(state,action: PayloadAction<adsSection[]>){
-            state.sections = action.payload
-        },
-        addSection(state, action: PayloadAction<adsSection>){
-            state.sections = [...state.sections,action.payload]
-        },
-        editSection(state, action: PayloadAction<adsSection>){
-            const data = state.sections.map( (element: adsSection) => { 
-                if(element.id == action.payload.id){
-                    return action.payload
-                }  
-                return element
-            })
-            state.sections = data
-        },
-        deleteSection(state, action: PayloadAction<idDelete>){
-            const data = state.sections.filter((element)=> { 
-                return element.id != action.payload.id })
-            state.sections = data
-        }
-    },
+    reducers: {},
     //AQUI SE IMPLEMENTAN LOS THUNKS ASINCRONOS
     extraReducers: (builder) => {
         
@@ -109,5 +85,4 @@ const aboutSlice = createSlice({
 export const aboutSelector = (state: RootState) => state.about
 export const headAboutSelector = (state: RootState) => state.about.head
 export const sectionsAboutSelector = (state: RootState) => state.about.sections
-export const { mainSection,adsSections,addSection,editSection,deleteSection } = aboutSlice.actions;
 export default aboutSlice.reducer;

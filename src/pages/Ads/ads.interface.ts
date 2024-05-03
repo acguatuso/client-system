@@ -1,14 +1,3 @@
-
-export type adsDeleteLink = {
-    titulo_link: string,
-    link: string,
-    index : number,
-    f1?: (evt: any, index:any) => void,
-    f2?: (index: any) => void,
-    f3?: ()=>void
-
-}
-
 export type adsMain = {
     estado: number,
     titulo: string,
