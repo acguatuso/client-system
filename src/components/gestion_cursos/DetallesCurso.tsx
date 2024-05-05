@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Curso } from './curso.interface';
 import { obtenerNombreModalidad } from '../../redux/reducers/cursosSlice';
 import { FaArrowLeft } from 'react-icons/fa';
+import { MatriculaEstudiantePage } from '../../pages';
 
 interface DetallesCursoState {
   curso: Curso;
@@ -16,6 +17,7 @@ function DetallesCurso() {
   const goBack = () => {
     navigate("/Cursos");
   };
+
  
   return (
     <>
@@ -53,6 +55,7 @@ function DetallesCurso() {
               </li>
             ))}
           </ul>
+          <MatriculaEstudiantePage identificadorCurso={curso.id || ''}/>
         </div>
       </div>
     </div>
