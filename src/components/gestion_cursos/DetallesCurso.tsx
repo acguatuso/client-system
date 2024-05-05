@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Curso } from './curso.interface';
 import { obtenerNombreModalidad } from '../../redux/reducers/cursosSlice';
-import { Timestamp } from 'firebase/firestore';
 import { FaArrowLeft } from 'react-icons/fa';
 
 interface DetallesCursoState {
@@ -31,7 +30,7 @@ function DetallesCurso() {
       </div>
       <div className="row text-start">
         <div className="col-md-6">
-          <img src={curso.download_url} style={{ width: "100%", height: "100%" }} alt="Imagen del curso" className="img-fluid mb-4" />
+          <img src={curso.download_url} style={{ width: "100%", height: "400px"}} alt="Imagen del curso" className="img-fluid mb-4" />
         </div>
         <div className="col-md-6">
           <p className="mb-3"><strong>Descripción:</strong> {curso.descripcion}</p>
