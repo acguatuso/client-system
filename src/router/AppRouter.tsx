@@ -8,7 +8,6 @@ import MiPerfil from '../components/gestion_usuarios/MiPerfil';
 import { MatriculaPage, EvaluacionPage } from '../components/gestion_cursos';
 import { Ads } from '../pages/Ads/Ads';
 import { ServicePage } from '../pages/ServicesPage/ServicePage';
-import { MatriculaEstudiantePage } from '../pages';
 import DetallesCurso from '../components/gestion_cursos/DetallesCurso';
 
 export const AppRouter = () => {
@@ -19,7 +18,6 @@ export const AppRouter = () => {
       <Route path="/home" element={<HomePageApp />} />
       <Route path="/crear-cuenta" element={<CreateAccountForm />} />
       <Route path='/Cursos' element={<CursosMain />} />
-      {/* <Route path='/Cursos' element={<MatriculaEstudiantePage />} /> */}
       <Route path='/About' element={<About />} />
       <Route path='/mi-perfil' element={<MiPerfil />} />
       <Route path='/matriculaAdmin' element={<MatriculaPage />}></Route>
