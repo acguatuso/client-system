@@ -18,6 +18,11 @@ body{
     color: rgb(0, 0, 0)
   }
 
+  .navbar-text-logIn {
+    color: #147c2e;
+    font-weight: bold;
+  }
+
   .navbar-title-text{
     color:#474747;
   }

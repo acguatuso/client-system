@@ -1,6 +1,5 @@
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { data_base } from '../../firebase';
@@ -14,23 +13,15 @@ interface Props {
   
 export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso }) => {
     
-   
-    
-    //TODO
-    // Quiero tener la información del curso seleccionado.... (Esperar implementación Mariana)
-    
     const user = useSelector((state: RootState) => state.auth.user);
     const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
-    const navigate = useNavigate();
     const [idUser, setIdUser] = useState(''); 
     
     useEffect(() => {
-        if (!loggedIn && !user) {
-            navigate("/");
-        } else {
+        if (loggedIn && user){
             cargarDatos();
         }
-    }, [loggedIn, user, navigate]);
+    }, [loggedIn, user]);
     
     const fetchData = async (correo: string) => {
         // Primero tomamos la referencia de donde se encuentran todos los usuarios de Firebase
@@ -54,33 +45,24 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
 
     const registrarTiempoMatricula = (): Timestamp => {
         const fecha = new Date();
-        console.log({fecha})
-
-        // Crear un objeto Timestamp de Firebase
         const marcaDeTiempoFirebase = Timestamp.fromDate(fecha);
 
         return marcaDeTiempoFirebase;
     }
 
     const matricular = async () => {
-        
-        console.log({identificadorCurso});
         cargarDatos();
         const idCurso = identificadorCurso;
         const horaSol = registrarTiempoMatricula();
 
         try{
             const cursoRef = doc(data_base, 'Cursos', idCurso);
-            console.log({cursoRef})
             // Obtener el documento actual del curso
             const cursoSnap = await getDoc(cursoRef);
             const cursoData = cursoSnap.data();
-            
             const nombreCurso: string = (cursoData) ? cursoData.nombre : ''; 
-            //console.log({cursoData})
-            // Verificar si el array "postulados" existe en el documento del curso
+            // Verificar si el array postulados existe en el documento del curso
             const postuladosArray = cursoData?.postulados || [];
-
             // Verificar si el usuario ya está en la lista de postulados
             const usuarioExistente = postuladosArray.some((postulado: { id: string }) => postulado.id === idUser);
 
@@ -99,12 +81,9 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
             } else {
                 alert(`Ya te encuentras en la lista de postulados del curso: ${nombreCurso}`);
             }
-
         }catch (error){
             console.error("Error al matricular: ", error);
         }
-        console.log({ idUser });
-        console.log({horaSol})
     }
 
 
@@ -112,9 +91,6 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
         <>
         {loggedIn && (
             <div>
-
-                {/* <h1>MatriculaEstudiantePage</h1> */}
-
                 {/*  <!-- Button para activar el modal --> */}
                 <button type="button" className="btn btn-matricula btn-sm" data-bs-toggle="modal" data-bs-target="#ModalMatricula">
                     Matricular
