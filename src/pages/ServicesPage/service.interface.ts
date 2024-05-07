@@ -1,13 +1,4 @@
 
-export type serviceDeleteLink = {
-    titulo_link: string,
-    link: string,
-    index : any,
-    f1?: (evt: any, index:any) => void,
-    f2?: (index: any) => void,
-
-}
-
 export type serviceMain = {
     estado: number,
     titulo: string,
