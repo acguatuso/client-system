@@ -40,9 +40,9 @@ export const Navbar = () => {
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
                         </NavLink>)}
-                        <h4 className="navbar-title-text d-none d-sm-inline-block">
+                        <h5 className="navbar-title-text d-none d-sm-inline-block">
                             {empresaData?.titulo_footer ?? 'Unión Cantonal de Asociaciones Guatuso'}
-                        </h4>
+                        </h5>
                     {/* <h4 className='navbar-text-white'>{ empresaData?.nombre ?? 'Unión Cantonal de Asociaciones Guatuso'}</h4> */}
                     <button className="navbar-toggler navbar-white navbar-toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

@@ -11,3 +11,10 @@
     color: #ffffff; /* Texto blanco al pasar el mouse */
     border-color: #6f42c1; /* Borde morado al pasar el mouse */
 }
+
+.inicia-sesion{
+    color: #6f42c1;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15%;
+}

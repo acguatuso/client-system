@@ -6,6 +6,8 @@ import { data_base } from '../../firebase';
 import { useState }  from 'react';
 import { Timestamp } from "firebase/firestore"; 
 import './MatriculaEstudiantePage.css';
+import NotificationModal from '../../components/Modal/NotificationModal';
+import { NavLink } from 'react-router-dom';
 
 interface Props {
     identificadorCurso: string;
@@ -13,6 +15,9 @@ interface Props {
   
 export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso }) => {
     
+    const [mostrarMensajePostulado, setMostrarMensajePostulado] = useState(false);
+    const [mostrarMensajePostulacionExistente, setMostrarMensajePostulacionExistente] = useState(false);
+
     const user = useSelector((state: RootState) => state.auth.user);
     const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
     const [idUser, setIdUser] = useState(''); 
@@ -60,7 +65,7 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
             // Obtener el documento actual del curso
             const cursoSnap = await getDoc(cursoRef);
             const cursoData = cursoSnap.data();
-            const nombreCurso: string = (cursoData) ? cursoData.nombre : ''; 
+            //const nombreCurso: string = (cursoData) ? cursoData.nombre : ''; 
             // Verificar si el array postulados existe en el documento del curso
             const postuladosArray = cursoData?.postulados || [];
             // Verificar si el usuario ya está en la lista de postulados
@@ -77,14 +82,20 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
                 await updateDoc(cursoRef, {
                     postulados: postuladosArray
                 });
-                alert(`La solicitud de matrícula en el curso ${nombreCurso} ha sido enviada. Te informaremos si fueste seleccionado.`);
+                setMostrarMensajePostulado(true); // Mostrar el modal de confirmación directamente
             } else {
-                alert(`Ya te encuentras en la lista de postulados del curso: ${nombreCurso}`);
+                setMostrarMensajePostulacionExistente(true);
             }
         }catch (error){
             console.error("Error al matricular: ", error);
         }
     }
+
+    // Función para guardar los cambios después de confirmar en el modal
+    const handleConfirmSave = () => {
+        setMostrarMensajePostulacionExistente(false);
+        setMostrarMensajePostulado(false); // Cierra el modal después de guardar
+    };
 
 
     return (
@@ -117,7 +128,27 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
                         </div>
                     </div>
                 </div>
+                {/* Modal para informar que te postulaste en el curso*/}
+                <NotificationModal
+                    texto="La solicitud de matrícula ha sido enviada."
+                    mostrar={mostrarMensajePostulado}
+                    onConfirm={handleConfirmSave}
+                />
+                {/* Modal para informar que ya te encuentras postulado en el curso*/}
+                <NotificationModal
+                    texto="Ya te encuentras en la lista de postulados."
+                    mostrar={mostrarMensajePostulacionExistente}
+                    onConfirm={handleConfirmSave}
+                />
             </div>)}
+        {!loggedIn && (
+            <NavLink
+                className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} inicia-sesion`}
+                to="/"
+                >
+                <h4>Inicia Sesión y Matricula Ya!!!</h4>
+            </NavLink>
+        )}
         </>
     )
 }

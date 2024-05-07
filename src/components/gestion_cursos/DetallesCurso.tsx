@@ -3,6 +3,9 @@ import { Curso } from './curso.interface';
 import { obtenerNombreModalidad } from '../../redux/reducers/cursosSlice';
 import { FaArrowLeft } from 'react-icons/fa';
 import { MatriculaEstudiantePage } from '../../pages';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+
 
 interface DetallesCursoState {
   curso: Curso;
@@ -11,6 +14,9 @@ interface DetallesCursoState {
 function DetallesCurso() {
   const location = useLocation();
   const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.auth.user);
+  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
+
   // Extraer el estado pasado desde el enlace
   const { state } = location;
   const { curso } = state as DetallesCursoState;
@@ -39,14 +45,20 @@ function DetallesCurso() {
           <p><strong>Modalidad:</strong> {obtenerNombreModalidad(curso.modalidad)}</p>
           <p><strong>Fecha de Inicio:</strong> {curso.fecha_inicio && new Date(curso.fecha_inicio.seconds * 1000).toLocaleDateString()}</p>
           <p><strong>Fecha de Fin:</strong> {curso.fecha_finalizacion && new Date(curso.fecha_finalizacion.seconds * 1000).toLocaleDateString()}</p>
-          {curso.link_plataforma && (
-            <p>
-              <strong>Link del Curso:</strong>{" "}
-              <a href={curso.link_plataforma} target="_blank" rel="noopener noreferrer">
-                {curso.link_plataforma}
-              </a>
-            </p>
+          
+          {loggedIn && user && (
+            <div>
+              {curso.link_plataforma && (
+                <p>
+                  <strong>Link del Curso:</strong>{" "}
+                  <a href={curso.link_plataforma} target="_blank" rel="noopener noreferrer">
+                    {curso.link_plataforma}
+                  </a>
+                </p>
+              )}
+            </div>
           )}
+
           <p><strong>Horario:</strong></p>
           <ul>
             {curso.horario.map((horario, index) => (
