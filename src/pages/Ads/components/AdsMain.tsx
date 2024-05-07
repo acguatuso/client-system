@@ -10,6 +10,9 @@ export const AdsMain = () => {
       <img src={ads.main.download_url} className="img-fluid" />      
       <h1 className="display-1 text-black">{ads.main.titulo}</h1>
       <h3 className="display-6 text-black">{ads.main.subtitulo}</h3>
+      <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+        Actualizar Inicio
+      </button>  
   </div>   
     </>
   )
