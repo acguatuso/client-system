@@ -1,0 +1,13 @@
+.btn-matricula {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #6f42c1; /* Texto morado */
+    border-color: #6f42c1; /* Borde morado */
+    /* Ajusta cualquier otra propiedad de estilo según sea necesario */
+}
+
+/* Cambios al pasar el mouse sobre el botón */
+.btn-matricula:hover {
+    background-color: #6f42c1; /* Fondo morado al pasar el mouse */
+    color: #ffffff; /* Texto blanco al pasar el mouse */
+    border-color: #6f42c1; /* Borde morado al pasar el mouse */
+}

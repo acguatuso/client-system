@@ -57,8 +57,6 @@ export const Navbar = () => {
                         {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex flex-column flex-lg-row justify-content-lg-end"> */}
                         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex d-md-flex justify-content-md-end">
                             <ul className="navbar-nav ">
-
-                                {loggedIn && user && (
                                     <div className="navbar-nav">
 
                                         <NavLink
@@ -67,13 +65,6 @@ export const Navbar = () => {
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Inicio
-                                        </NavLink>
-                                        <NavLink
-                                            className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/mi-perfil"
-                                            onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
-                                        >
-                                            Mi Perfil
                                         </NavLink>
                                 
                                         <NavLink
@@ -109,12 +100,39 @@ export const Navbar = () => {
                                             Acerca
                                         </NavLink>
 
-                                        <button className="nav-item nav-link btn navbar-text-white close-color" onClick={handleLogOut}>
-                                            <i className="fa-solid fa-right-from-bracket me-2"></i>
-                                            Cerrar Sesión
-                                        </button>
+                                        {loggedIn && user &&(
+                                            <>      
+                                                <NavLink
+                                                    className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
+                                                    to="/mis-cursos"
+                                                    onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
+                                                >
+                                                    Mis Cursos
+                                                </NavLink>
+                                                <NavLink
+                                                    className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
+                                                    to="/mi-perfil"
+                                                    onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
+                                                >
+                                                    Mi Perfil
+                                                </NavLink>
+                                                
+                                                <button className="nav-item nav-link btn navbar-text-white close-color" onClick={handleLogOut}>
+                                                    <i className="fa-solid fa-right-from-bracket me-2"></i>
+                                                    Cerrar Sesión
+                                                </button>
+                                            </>
+                                        )}
+                                        {!loggedIn && !user && (
+                                            <NavLink
+                                            className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-logIn`}
+                                            to="/"
+                                            >
+                                            Iniciar Sesión
+                                            </NavLink>
+                                        )}
                                     </div>
-                                )}
+                                
                             </ul>
                         </div>
                     </div>
