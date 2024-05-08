@@ -35,7 +35,7 @@ export const Navbar = () => {
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/"
+                            to="/home"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
