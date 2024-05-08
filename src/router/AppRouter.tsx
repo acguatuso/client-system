@@ -12,9 +12,8 @@ import DetallesCurso from '../components/gestion_cursos/DetallesCurso';
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginAccountForm />} />
+      <Route path="/" element={<HomePageApp/>} />
       <Route path="/iniciar-sesion" element={<LoginAccountForm />} />
-      <Route path="/home" element={<HomePageApp />} />
       <Route path="/crear-cuenta" element={<CreateAccountForm />} />
       <Route path='/Cursos' element={<CursosMain />} />
       <Route path='/About' element={<About />} />

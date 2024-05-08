@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     const handleLogOut = () => {
         dispatch(logOut());
-        navigate('/iniciar-sesion', { replace: true })
+        navigate('/', { replace: true })
     }
 
     return (
@@ -49,11 +49,6 @@ export const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse navbar-collapse-custom" id="navbarTogglerDemo01">
 
-                        <div className="navbar-collapse ">
-                            {user && loggedIn && (
-                                ""
-                            )}
-                        </div>
                         {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex flex-column flex-lg-row justify-content-lg-end"> */}
                         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex d-md-flex justify-content-md-end">
                             <ul className="navbar-nav ">
@@ -61,7 +56,7 @@ export const Navbar = () => {
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/home"
+                                            to="/"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Inicio
@@ -126,7 +121,7 @@ export const Navbar = () => {
                                         {!loggedIn && !user && (
                                             <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-logIn`}
-                                            to="/"
+                                            to="/iniciar-sesion"
                                             >
                                             Iniciar Sesión
                                             </NavLink>
