@@ -48,7 +48,7 @@ function CursosMain() {
         </div>
         <div className="col-md-3 bg-info-subtle p-4 ms-md-3 mt-4 mt-md-0">
           <h2>Próximamente</h2>
-          <div className="row row-cols-2 row-cols-md-1">
+          <div className="row row-cols-1">
             {cursos
               .filter((curso) => curso.visible === 2)
               .map((curso) => (
