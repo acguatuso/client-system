@@ -60,18 +60,6 @@ const adsSlice =  createSlice({
             state.loading = false
             state.error = action.error.message;            
         });
-        builder.addCase(fetchAds.pending, (state) => {
-            state.loading = true
-        });
-        builder.addCase(fetchAds.fulfilled, (state,action: PayloadAction<any[]>) => {
-            state.loading = false,
-            state.adsList = action.payload
-        });
-        builder.addCase(fetchAds.rejected, (state,action) => {
-            state.loading = false
-            state.adsList = [] as ads[],
-            state.error = action.error.message;            
-        });    
     }
 }
 )

@@ -40,7 +40,7 @@ function DetallesCurso() {
               src={curso.download_url}
               style={{ width: "100%", height: "400px" }}
               alt="Imagen del curso"
-              className="img-fluid mb-4 rounded"
+              className="img-fluid mb-4"
             />
           </div>
           <div className="col-md-6">
