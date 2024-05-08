@@ -16,7 +16,6 @@ export const ServicePage = () => {
       <div className="container-fluid">
         <ServiceList/>
       </div>    
-
     </div>
   )
 }
