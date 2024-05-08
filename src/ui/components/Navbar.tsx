@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     const handleLogOut = () => {
         dispatch(logOut());
-        navigate('/', { replace: true })
+        navigate('/home', { replace: true })
     }
 
     return (

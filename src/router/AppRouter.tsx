@@ -13,6 +13,7 @@ export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePageApp/>} />
+      <Route path="/home" element={<HomePageApp/>} />
       <Route path="/iniciar-sesion" element={<LoginAccountForm />} />
       <Route path="/crear-cuenta" element={<CreateAccountForm />} />
       <Route path='/Cursos' element={<CursosMain />} />
