@@ -12,17 +12,17 @@ import DetallesCurso from '../components/gestion_cursos/DetallesCurso';
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePageApp/>} />
-      <Route path="/home" element={<HomePageApp/>} />
-      <Route path="/iniciar-sesion" element={<LoginAccountForm />} />
-      <Route path="/crear-cuenta" element={<CreateAccountForm />} />
-      <Route path='/Cursos' element={<CursosMain />} />
-      <Route path='/About' element={<About />} />
-      <Route path='/mi-perfil' element={<MiPerfil />} />
-      {/* <Route path='/mis-cursos' element={<MisCursos />} /> */}
-      <Route path='/avisos' element={<Ads/>}></Route>
-      <Route path='/servicios' element={<ServicePage />}></Route>
-      <Route path="/curso/:nombre" element={<DetallesCurso/>} />
+      <Route path="/client-system/" element={<HomePageApp/>} />
+      <Route path="/client-system/home" element={<HomePageApp/>} />
+      <Route path="/client-system/iniciar-sesion" element={<LoginAccountForm />} />
+      <Route path="/client-system/crear-cuenta" element={<CreateAccountForm />} />
+      <Route path='/client-system/Cursos' element={<CursosMain />} />
+      <Route path='/client-system/About' element={<About />} />
+      <Route path='/client-system/mi-perfil' element={<MiPerfil />} />
+      {/* <Route path='/client-system/mis-cursos' element={<MisCursos />} /> */}
+      <Route path='/client-system/avisos' element={<Ads/>}></Route>
+      <Route path='/client-system/servicios' element={<ServicePage />}></Route>
+      <Route path="/client-system/curso/:nombre" element={<DetallesCurso/>} />
     </Routes>
   )
 }

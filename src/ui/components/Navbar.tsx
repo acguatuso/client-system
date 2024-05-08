@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     const handleLogOut = () => {
         dispatch(logOut());
-        navigate('/home', { replace: true })
+        navigate('/client-system/', { replace: true })
     }
 
     return (
@@ -27,7 +27,7 @@ export const Navbar = () => {
                     {user && loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/home"
+                            to="/client-system/home"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Logo" width="110" height="80" />
 
@@ -35,7 +35,7 @@ export const Navbar = () => {
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/home"
+                            to="/client-system/home"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
@@ -56,7 +56,7 @@ export const Navbar = () => {
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/"
+                                            to="/client-system/"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Inicio
@@ -64,7 +64,7 @@ export const Navbar = () => {
                                 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/Cursos"
+                                            to="/client-system/Cursos"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Cursos
@@ -73,7 +73,7 @@ export const Navbar = () => {
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/servicios"
+                                            to="/client-system/servicios"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Servicios
@@ -81,7 +81,7 @@ export const Navbar = () => {
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/avisos"
+                                            to="/client-system/avisos"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Avisos
@@ -89,7 +89,7 @@ export const Navbar = () => {
 
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                            to="/about"
+                                            to="/client-system/about"
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Acerca
@@ -99,14 +99,14 @@ export const Navbar = () => {
                                             <>      
                                                 <NavLink
                                                     className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                                    to="/mis-cursos"
+                                                    to="/client-system/mis-cursos"
                                                     onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                                 >
                                                     Mis Cursos
                                                 </NavLink>
                                                 <NavLink
                                                     className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                                    to="/mi-perfil"
+                                                    to="/client-system/mi-perfil"
                                                     onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                                 >
                                                     Mi Perfil
@@ -121,7 +121,7 @@ export const Navbar = () => {
                                         {!loggedIn && !user && (
                                             <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-logIn`}
-                                            to="/iniciar-sesion"
+                                            to="/client-system/iniciar-sesion"
                                             >
                                             Iniciar Sesión
                                             </NavLink>
