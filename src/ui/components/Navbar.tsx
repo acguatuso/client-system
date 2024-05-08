@@ -99,7 +99,7 @@ export const Navbar = () => {
                                             <>      
                                                 <NavLink
                                                     className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                                    to="/client-system/mis-cursos"
+                                                    to="/client-system/#"
                                                     onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                                 >
                                                     Mis Cursos
