@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "./CursosMain.css";
 import { FaArrowRight } from "react-icons/fa";

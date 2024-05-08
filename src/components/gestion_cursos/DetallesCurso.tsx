@@ -1,3 +1,4 @@
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { Curso } from "./curso.interface";
 import { obtenerNombreModalidad } from "../../redux/reducers/cursosSlice";
@@ -5,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { MatriculaEstudiantePage } from "../../pages";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+
 
 interface DetallesCursoState {
   curso: Curso;
