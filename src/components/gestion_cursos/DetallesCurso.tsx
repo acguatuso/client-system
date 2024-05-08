@@ -20,7 +20,7 @@ function DetallesCurso() {
   const { state } = location;
   const { curso } = state as DetallesCursoState;
   const goBack = () => {
-    navigate("/Cursos");
+    navigate("/client-system/cursos");
   };
 
   return (
