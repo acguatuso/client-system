@@ -36,12 +36,10 @@ export const ServiceList = () => {
                             </button>
                             <div className="collapse" id={`collapse-${element.id}`}>
                                 <div className="card card-body">
-
                                 <ServiceLinkField
                                 key={`${element.id}-service-linkfield1`}
                                 link={element.links}                        
                                 />
-
                                 </div>
                             </div>
                         </div>
@@ -63,13 +61,11 @@ export const ServiceList = () => {
                                     Enlaces de interés
                             </button>
                             <div className="collapse mb-2" id={`collapse-${element.id}`}>
-
                                 <div className="card card-body">
                                 <ServiceLinkField
                                 key={`${element.id}-service-linkfield2`}
                                 link={element.links}                        
                                 />
-
                                 </div>
                             </div>
                         </div>

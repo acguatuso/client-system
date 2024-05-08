@@ -28,9 +28,8 @@ export const AdsList = () => {
                         <div className="col">                        
                             <h3>{element.titulo}</h3>
                             <h5>{element.subtitulo}</h5>
-
                             <p className='lead'>{element.descripcion}</p>
-
+                            
                             <button className="btn btn-primary btn-sm mb-2" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-${element.id}`} aria-expanded="false" aria-controls={`collapse-${element.id}`}>
                                 Enlaces de interés
                             </button>
@@ -40,7 +39,6 @@ export const AdsList = () => {
                                     key={`${element.id}-ads-linkfield1`}
                                     link={element.links}                        
                                     />
-
                                 </div>
                             </div>
                         </div>
@@ -62,7 +60,6 @@ export const AdsList = () => {
                                     Enlaces de interés
                             </button>
                             <div className="collapse mb-2" id={`collapse-${element.id}`}>
-
                                 <div className="card card-body">
                                     <AdsLinkField
                                     key={`${element.id}-ads-linkfield2`}
@@ -70,6 +67,8 @@ export const AdsList = () => {
                                     />
                                 </div>
                             </div>
+
+
 
                         </div>
                         <div className="col">        

@@ -1,5 +1,4 @@
 
-
 export type serviceMain = {
     estado: number,
     titulo: string,

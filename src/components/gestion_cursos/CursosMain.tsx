@@ -1,4 +1,3 @@
-
 import "./CursosMain.css";
 import { useEffect, useState } from "react";
 import Card from "./Card";
@@ -22,7 +21,6 @@ function CursosMain() {
   }, [dispatch]);
 
   useEffect(() => {
-
     setLoading(selectedCursos.loading);
     setError(selectedCursos.error);
     if (!selectedCursos.loading && !selectedCursos.error) {
@@ -60,7 +58,6 @@ function CursosMain() {
       </div>
     </>
   );
-
 }
 
 export default CursosMain;
