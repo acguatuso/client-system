@@ -16,13 +16,13 @@ export const AppRouter = () => {
       <Route path="/client-system/home" element={<HomePageApp/>} />
       <Route path="/client-system/iniciar-sesion" element={<LoginAccountForm />} />
       <Route path="/client-system/crear-cuenta" element={<CreateAccountForm />} />
-      <Route path='/client-system/Cursos' element={<CursosMain />} />
-      <Route path='/client-system/About' element={<About />} />
+      <Route path='/client-system/cursos' element={<CursosMain />} />
+      <Route path='/client-system/about' element={<About />} />
       <Route path='/client-system/mi-perfil' element={<MiPerfil />} />
       {/* <Route path='/client-system/mis-cursos' element={<MisCursos />} /> */}
       <Route path='/client-system/avisos' element={<Ads/>}></Route>
       <Route path='/client-system/servicios' element={<ServicePage />}></Route>
-      <Route path="/client-system/curso/:nombre" element={<DetallesCurso/>} />
+      <Route path="/client-system/cursos/:nombre" element={<DetallesCurso/>} />
     </Routes>
   )
 }

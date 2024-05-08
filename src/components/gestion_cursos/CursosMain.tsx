@@ -38,7 +38,7 @@ function CursosMain() {
               .filter((curso) => curso.visible === 1)
               .map((curso) => (
                 <div className="col" key={curso.id}>
-                  <Card to={`/curso/${curso.nombre}`} curso={curso} />
+                  <Card to={`/client-system/cursos/${curso.nombre}`} curso={curso} />
                 </div>
               ))}
           </div>
@@ -50,7 +50,7 @@ function CursosMain() {
               .filter((curso) => curso.visible === 2)
               .map((curso) => (
                 <div className="col" key={curso.id}>
-                  <Card to={`/curso/${curso.nombre}`} curso={curso} />
+                  <Card to={`/client-system/curso/${curso.nombre}`} curso={curso} />
                 </div>
               ))}
           </div>
