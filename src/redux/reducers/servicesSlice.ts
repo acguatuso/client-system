@@ -60,6 +60,18 @@ const serviceSlice =  createSlice({
             state.loading = false
             state.error = action.error.message;            
         });
+        builder.addCase(fetchService.pending, (state) => {
+            state.loading = true
+        });
+        builder.addCase(fetchService.fulfilled, (state,action: PayloadAction<any[]>) => {
+            state.loading = false,
+            state.ServiceList = action.payload
+        });
+        builder.addCase(fetchService.rejected, (state,action) => {
+            state.loading = false
+            state.ServiceList = [] as service[],
+            state.error = action.error.message;            
+        });    
     }
 })
 
