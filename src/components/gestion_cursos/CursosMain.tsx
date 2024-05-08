@@ -29,34 +29,40 @@ function CursosMain() {
   }, [selectedCursos]);
 
   return (
-    <>
+    <section>
       <div className="row mt-4">
-        <div className="col bg-body-secondary p-4 me-md-3">
+        <div className="col p-4 me-md-3">
           <h2 className="text-center">Cursos Disponibles</h2>
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {cursos
               .filter((curso) => curso.visible === 1)
               .map((curso) => (
                 <div className="col" key={curso.id}>
-                  <Card to={`/client-system/cursos/${curso.nombre}`} curso={curso} />
+                  <Card
+                    to={`/client-system/cursos/${curso.nombre}`}
+                    curso={curso}
+                  />
                 </div>
               ))}
           </div>
         </div>
         <div className="col-md-3 bg-info-subtle p-4 ms-md-3 mt-4 mt-md-0">
           <h2>Próximamente</h2>
-          <div className="row">
+          <div className="row row-cols-2 row-cols-md-1">
             {cursos
               .filter((curso) => curso.visible === 2)
               .map((curso) => (
-                <div className="col" key={curso.id}>
-                  <Card to={`/client-system/curso/${curso.nombre}`} curso={curso} />
+                <div className="col mb-4" key={curso.id}>
+                  <Card
+                    to={`/client-system/curso/${curso.nombre}`}
+                    curso={curso}
+                  />
                 </div>
               ))}
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
