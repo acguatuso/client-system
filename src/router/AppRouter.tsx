@@ -12,7 +12,6 @@ import DetallesCurso from '../components/gestion_cursos/DetallesCurso';
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePageApp/>} />
       <Route path="/client-system/" element={<HomePageApp/>} />
       <Route path="/client-system/home" element={<HomePageApp/>} />
       <Route path="/client-system/iniciar-sesion" element={<LoginAccountForm />} />
