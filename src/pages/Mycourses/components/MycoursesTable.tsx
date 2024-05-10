@@ -42,45 +42,55 @@ export const MycoursesTable = () => {
     const user = useSelector((state: RootState) => state.auth.user?.correo)
     const searchState = async (idUsuario:string) => {
       let dataList: userCoursesList[] = []
-      //busca en aprobados
-      courses.cursos.map((curso: Curso) => {
+      let flag = false
+      //busca en aprobados  
+      courses.cursos.map((curso: Curso) => {        
         curso.aprobados?.filter((aprobado: string) => {
           console.log(aprobado, idUsuario)
           if(aprobado == idUsuario){
             console.log('entraaaa')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Aprobado"};
-            dataList = [...dataList,courseList]
+            dataList = [...dataList,courseList] 
+            flag = true           
           }
         })
         //busca reprobados
+        flag == false &&
         curso.reprobados?.filter((reprobado: string) => {
           console.log(reprobado, idUsuario)
           if(reprobado == idUsuario){
             console.log('entra reprobado')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Reprobado"};
             dataList = [...dataList,courseList]
-          }
-        })
-        //postulado en espera...
-        curso.postulados?.filter((postulado: any) => {
-          console.log(postulado.id, idUsuario)
-          if(postulado.id == idUsuario){
-            console.log('entra postulado')
-            const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "En espera"};
-            dataList = [...dataList,courseList]
+            flag = true
           }
         })
         //matriculado en curso
+        flag == false &&
         curso.matriculados?.filter((matriculado: string) => {
           console.log(matriculado, idUsuario)
           if(matriculado == idUsuario){
             console.log('entra matriculado')
-            const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "En curso"};
+            const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Matriculado"};
             dataList = [...dataList,courseList]
-          }
+            flag = true
+            }
         })
+        //postulado en espera
+        flag == false &&
+        curso.postulados?.filter((postulado: any) => {
+          console.log(postulado.id, idUsuario)
+          if(postulado.id == idUsuario){
+            console.log('entra postulado')
+            const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Espera"};
+            dataList = [...dataList,courseList]
+            flag = true
+          }
+        })  
+        flag = false      
       })
       tableInfo.current = dataList
+      
     }
     const searchUser = async (mail:string) =>  {    
       const data = await getFirebaseDocs('/Usuarios')
