@@ -136,7 +136,7 @@ export const MycoursesTable = () => {
         {
           name: "Modalidad",
           selector: (row: any) => row.modalidad,
-          cell: (row: any) => (row.modalidad==0 ? "Presencial" : row.modalidad==1 ? "Virtual" : "Mixta"),
+          cell: (row: any) => (row.modalidad==0 ? <div>Presencial</div> : row.modalidad==1 ? <div>Virtual</div> : row.modalidad==2 ?<div>Mixta</div>:<div>Desconocido</div>),
           sortable: true,
         
         },
