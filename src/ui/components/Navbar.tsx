@@ -57,12 +57,12 @@ export const Navbar = () => {
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/client-system/"
+                            to="/client-system/">
 
                             <img src={logoUrl} alt="Logo" width="110" height="80" />
 
-
-                        </NavLink>)}
+                        </NavLink>
+                        )}
                         <h5 className="navbar-title-text d-none d-sm-inline-block">
                             {empresaData?.titulo_footer ?? 'Unión Cantonal de Asociaciones Guatuso'}
                         </h5>
