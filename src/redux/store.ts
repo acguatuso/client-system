@@ -8,6 +8,7 @@ import paisInfoReducer from './reducers/paisInfoSlice';
 import cursosReducer from './reducers/cursosSlice';
 import avisosReducer from './reducers/adsSlice'
 import serviciosReducer from './reducers/servicesSlice'
+import misCursosReducer from './reducers/mycoursesSlice'
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
@@ -26,7 +27,7 @@ const persistedPaisInfoReducer = persistReducer(persistConfig, paisInfoReducer);
 const persistedCursosReducer = persistReducer(persistConfig, cursosReducer);
 const persistedAvisosReducer = persistReducer(persistConfig, avisosReducer)
 const persistedServiciosReducer = persistReducer(persistConfig, serviciosReducer)
-
+const persistedMisCursosReducer = persistReducer(persistConfig, misCursosReducer)
 
 const store = configureStore({
   reducer: {
@@ -37,6 +38,7 @@ const store = configureStore({
     cursos: persistedCursosReducer,
     avisos: persistedAvisosReducer,
     servicios: persistedServiciosReducer,
+    misCursos: persistedMisCursosReducer
     // aca van más reducers una vez persistidos
   }, middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

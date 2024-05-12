@@ -27,7 +27,7 @@ export const Navbar = () => {
                     {user && loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/client-system/home"
+                            to="/client-system/"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Logo" width="110" height="80" />
 
@@ -35,7 +35,7 @@ export const Navbar = () => {
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/client-system/home"
+                            to="/client-system/"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
@@ -57,6 +57,7 @@ export const Navbar = () => {
                                         <NavLink
                                             className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
                                             to="/client-system/"
+                                            end
                                             onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                         >
                                             Inicio
@@ -99,7 +100,7 @@ export const Navbar = () => {
                                             <>      
                                                 <NavLink
                                                     className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} navbar-text-white`}
-                                                    to="/client-system/#"
+                                                    to="/client-system/mis-cursos"
                                                     onClick={() => document.getElementById('navbarTogglerDemo01')?.classList.remove('show')}
                                                 >
                                                     Mis Cursos
