@@ -49,15 +49,18 @@ export const Navbar = () => {
                             className="navbar-brand"
                             to="/client-system/"
                         >
+
                             <img src={logoUrl} alt="Logo" width="110" height="80" />
+
 
                         </NavLink>)}
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
                             to="/client-system/"
-                        >
+
                             <img src={logoUrl} alt="Logo" width="110" height="80" />
+
 
                         </NavLink>)}
                         <h5 className="navbar-title-text d-none d-sm-inline-block">
