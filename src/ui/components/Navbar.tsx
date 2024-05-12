@@ -29,7 +29,7 @@ export const Navbar = () => {
                             className="navbar-brand"
                             to="/client-system/"
                         >
-                            <img src="/src/assets/LogoUCAG.png" alt="Logo" width="110" height="80" />
+                            <img src="src/assets/LogoUCAG-E3vVaZ5h.png" alt="Logo" width="110" height="80" />
 
                         </NavLink>)}
                     {!user && !loggedIn && (
@@ -37,7 +37,7 @@ export const Navbar = () => {
                             className="navbar-brand"
                             to="/client-system/"
                         >
-                            <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
+                            <img src="src/assets/LogoUCAG-E3vVaZ5h.png" alt="Bootstrap" width="110" height="80" />
 
                         </NavLink>)}
                         <h5 className="navbar-title-text d-none d-sm-inline-block">
