@@ -48,19 +48,19 @@ const LoginAccountForm: React.FC = () => {
   };
   const [logoUrl, setLogoUrl] = useState('');
 
-    useEffect(() => { 
-        (async () => {
-            const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
-            getDownloadURL(imageRef)
-                .then((url) => {
-                    setLogoUrl(url);
-                })
-                .catch((error) => {
-                    console.error('Error descargando el logo:', error);
-                });
+  useEffect(() => {
+    (async () => {
+      const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
+      getDownloadURL(imageRef)
+        .then((url) => {
+          setLogoUrl(url);
+        })
+        .catch((error) => {
+          console.error('Error descargando el logo:', error);
+        });
 
-        })()
-    }, []);
+    })()
+  }, []);
 
   // Redireccionar si está logueado, hay usuario y email verificado
   useEffect(() => {
