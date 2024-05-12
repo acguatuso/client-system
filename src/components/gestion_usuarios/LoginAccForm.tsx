@@ -91,7 +91,7 @@ const LoginAccountForm: React.FC = () => {
               {!user && (
                 <form onSubmit={handleLogin}>
                   <div>
-                    <img src={logoUrl} alt="Bootstrap" width="200" height="150" />
+                    <img src={logoUrl} alt="logo" width="200" height="150" />
                     <h3>Bienvenido!</h3>
                     <h3>Inicio de Sesión</h3>
                   </div>
@@ -124,7 +124,7 @@ const LoginAccountForm: React.FC = () => {
               {user && (
                 <div>
                   <div>
-                    <img src="src\assets\LogoUCAG.png" alt="Bootstrap" width="200" height="150" />
+                    <img src={logoUrl} alt="logo" width="200" height="150" />
                     <h3>Bienvenido!</h3>
                   </div>
                   <label>Credenciales Correctas!</label>
