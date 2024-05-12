@@ -27,7 +27,7 @@ export const Navbar = () => {
                     {user && loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/client-system/home"
+                            to="/client-system/"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Logo" width="110" height="80" />
 
@@ -35,7 +35,7 @@ export const Navbar = () => {
                     {!user && !loggedIn && (
                         <NavLink
                             className="navbar-brand"
-                            to="/client-system/home"
+                            to="/client-system/"
                         >
                             <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="110" height="80" />
 
