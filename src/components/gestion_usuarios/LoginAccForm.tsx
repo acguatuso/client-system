@@ -112,7 +112,7 @@ const LoginAccountForm: React.FC = () => {
                   <div>
                     <br />
                     <label>¿No tiene cuenta?</label>
-                    <Link to="/crear-cuenta">Crear Cuenta</Link>
+                    <Link to="/client-system/crear-cuenta">Crear Cuenta</Link>
                   </div>
                   <div>
                     <span>¿Olvidaste tu contraseña? </span>
