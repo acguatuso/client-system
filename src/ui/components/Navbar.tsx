@@ -58,7 +58,7 @@ export const Navbar = () => {
                         <NavLink
                             className="navbar-brand"
                             to="/client-system/"
-
+                        >
                             <img src={logoUrl} alt="Logo" width="110" height="80" />
 
 
