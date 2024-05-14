@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../CSS/Components/LoginAccStyle.css';
 import ForgotPassword from './ForgotPassword';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { ref, getDownloadURL } from 'firebase/storage';
 import { firebase_storage } from '../../firebase';
 
 const LoginAccountForm: React.FC = () => {
@@ -46,21 +46,6 @@ const LoginAccountForm: React.FC = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const [logoUrl, setLogoUrl] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
-      getDownloadURL(imageRef)
-        .then((url) => {
-          setLogoUrl(url);
-        })
-        .catch((error) => {
-          console.error('Error descargando el logo:', error);
-        });
-
-    })()
-  }, []);
 
   // Redireccionar si está logueado, hay usuario y email verificado
   useEffect(() => {
@@ -73,6 +58,22 @@ const LoginAccountForm: React.FC = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [loggedIn, user, emailVerified]);
+
+  const [logoUrl, setLogoUrl] = useState('');
+
+    useEffect(() => { 
+        (async () => {
+            const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
+            getDownloadURL(imageRef)
+                .then((url) => {
+                    setLogoUrl(url);
+                })
+                .catch((error) => {
+                    console.error('Error descargando el logo:', error);
+                });
+
+        })()
+    }, []);
 
   return (
     <>
