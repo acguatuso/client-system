@@ -39,7 +39,7 @@ function CursosMain() {
               .map((curso) => (
                 <div className="col" key={curso.id}>
                   <Card
-                    to={`/client-system/cursos/${curso.nombre}`}
+                    to={`/cursos/${curso.nombre}`}
                     curso={curso}
                   />
                 </div>
