@@ -44,4 +44,4 @@ jobs:
       - name: Handle 404 Error
         if: failure()
         run: |
-          echo "<script>window.location.href = '/index.html';</script>"
+          echo "<script>window.location.href = window.location.pathname;</script>"
