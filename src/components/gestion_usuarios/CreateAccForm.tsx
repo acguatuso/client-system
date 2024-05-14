@@ -6,6 +6,8 @@ import '../../CSS/Components/CreateAccStyle.css';
 import { Link } from 'react-router-dom';
 import { fetchPaisInfoAsync, obtenerNombresCantonesDeProvincia, obtenerNombresDistritosDeCanton, obtenerNombresProvincias } from '../../redux/reducers/paisInfoSlice';
 import { useAppDispatch } from '../../hooks/hooks';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { firebase_storage } from '../../firebase';
 
 interface FormData {
   nombre: string;
@@ -64,6 +66,22 @@ const CreateAccountForm: React.FC = () => {
     }
   }, []);
 
+  const [logoUrl, setLogoUrl] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
+      getDownloadURL(imageRef)
+        .then((url) => {
+          setLogoUrl(url);
+        })
+        .catch((error) => {
+          console.error('Error descargando el logo:', error);
+        });
+
+    })()
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
 
@@ -114,7 +132,7 @@ const CreateAccountForm: React.FC = () => {
     <div>
       <div className="container">
         <div>
-          <img src="/src/assets/LogoUCAG.png" alt="Bootstrap" width="200" height="150" />
+          <img src={logoUrl} alt="Bootstrap" width="200" height="150" />
           {!user && !loggedIn && (
             <>
               <h2>Bienvenido!</h2>
@@ -221,7 +239,7 @@ const CreateAccountForm: React.FC = () => {
         <>
           <div>
             <label>¿Ya tiene cuenta?</label>
-            <Link to="/iniciar-sesion">Iniciar Sesión</Link>
+            <Link to="/client-system/iniciar-sesion">Iniciar Sesión</Link>
           </div>
         </>
       )}

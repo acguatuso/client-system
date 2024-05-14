@@ -6,6 +6,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../CSS/Components/LoginAccStyle.css';
 import ForgotPassword from './ForgotPassword';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { firebase_storage } from '../../firebase';
 
 const LoginAccountForm: React.FC = () => {
   // React-router-dom
@@ -44,6 +46,21 @@ const LoginAccountForm: React.FC = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const [logoUrl, setLogoUrl] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const imageRef = ref(firebase_storage, 'Empresa/Logo/logo');
+      getDownloadURL(imageRef)
+        .then((url) => {
+          setLogoUrl(url);
+        })
+        .catch((error) => {
+          console.error('Error descargando el logo:', error);
+        });
+
+    })()
+  }, []);
 
   // Redireccionar si está logueado, hay usuario y email verificado
   useEffect(() => {
@@ -74,7 +91,7 @@ const LoginAccountForm: React.FC = () => {
               {!user && (
                 <form onSubmit={handleLogin}>
                   <div>
-                    <img ref="src/assets/LogoUCAG-E3vVaZ5h.png" alt="Bootstrap" width="200" height="150" />
+                    <img src={logoUrl} alt="logo" width="200" height="150" />
                     <h3>Bienvenido!</h3>
                     <h3>Inicio de Sesión</h3>
                   </div>
@@ -95,7 +112,7 @@ const LoginAccountForm: React.FC = () => {
                   <div>
                     <br />
                     <label>¿No tiene cuenta?</label>
-                    <Link to="/crear-cuenta">Crear Cuenta</Link>
+                    <Link to="/client-system/crear-cuenta">Crear Cuenta</Link>
                   </div>
                   <div>
                     <span>¿Olvidaste tu contraseña? </span>
@@ -107,7 +124,7 @@ const LoginAccountForm: React.FC = () => {
               {user && (
                 <div>
                   <div>
-                    <img src="src\assets\LogoUCAG.png" alt="Bootstrap" width="200" height="150" />
+                    <img src={logoUrl} alt="logo" width="200" height="150" />
                     <h3>Bienvenido!</h3>
                   </div>
                   <label>Credenciales Correctas!</label>
