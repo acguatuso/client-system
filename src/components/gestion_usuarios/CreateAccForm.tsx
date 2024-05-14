@@ -239,7 +239,7 @@ const CreateAccountForm: React.FC = () => {
         <>
           <div>
             <label>¿Ya tiene cuenta?</label>
-            <Link to="/client-system/iniciar-sesion">Iniciar Sesión</Link>
+            <Link to="/iniciar-sesion">Iniciar Sesión</Link>
           </div>
         </>
       )}

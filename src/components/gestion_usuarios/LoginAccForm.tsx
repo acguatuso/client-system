@@ -51,7 +51,7 @@ const LoginAccountForm: React.FC = () => {
   useEffect(() => {
     if (loggedIn && user && emailVerified) {
       const timeoutId = setTimeout(() => {
-        navigate("/client-system/home"); // Redirige al usuario a la página de inicio
+        navigate("/home"); // Redirige al usuario a la página de inicio
       }, 3 * 1000); // Convierte los segundos a milisegundos
 
       // Limpia el temporizador si el componente se desmonta antes de que se complete
@@ -113,7 +113,7 @@ const LoginAccountForm: React.FC = () => {
                   <div>
                     <br />
                     <label>¿No tiene cuenta?</label>
-                    <Link to="/client-system/crear-cuenta">Crear Cuenta</Link>
+                    <Link to="/crear-cuenta">Crear Cuenta</Link>
                   </div>
                   <div>
                     <span>¿Olvidaste tu contraseña? </span>

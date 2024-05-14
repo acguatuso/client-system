@@ -144,7 +144,7 @@ export const MatriculaEstudiantePage: React.FC<Props> = ({ identificadorCurso })
         {!loggedIn && (
             <NavLink
                 className={({ isActive }) => `nav-item nav-link ${isActive ? 'active' : ''} inicia-sesion`}
-                to="/client-system/iniciar-sesion"
+                to="iniciar-sesion"
                 >
                 <h4>Inicia Sesión y Matricula Ya!!!</h4>
             </NavLink>
