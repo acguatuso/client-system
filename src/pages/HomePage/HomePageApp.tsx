@@ -1,18 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
 import './HomePageApp.css'
 import { getFirebaseDoc } from '../../api/getFirebaseDoc/getFirebaseDoc';
-import { ref, getDownloadURL }from 'firebase/storage';
+import { ref, getDownloadURL } from 'firebase/storage';
 import { firebase_storage } from '../../firebase';
+import HomeTables from './HomeTables';
+import { useSelector } from 'react-redux';
+import { fetchStatisticsData } from '../../redux/reducers/statisticsSlice';
+import { useAppDispatch } from '../../hooks/hooks';
+import { RootState } from '../../redux/store';
 
 export const HomePageApp = () => {
     //informacion de FireStore
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [image_url, setImageUrl] = useState('');
-
     const editRef = useRef<any>(null);
+    const dispatch = useAppDispatch();
+    // Acceder a los valores numéricos del estado del slice de estadísticas
+    const { cursosActivos, aprobadosTotales } = useSelector((state: RootState) => state.statistics);
 
-    useEffect(() => { 
+    // Llamar a la acción para cargar los datos de estadísticas al montar el componente
+    useEffect(() => {
+        dispatch(fetchStatisticsData());
+    }, [dispatch]);
+
+    useEffect(() => {
         const imageRef = ref(firebase_storage, 'Home/imagen-inicio');
         getDownloadURL(imageRef)
             .then((url) => {
@@ -41,13 +53,19 @@ export const HomePageApp = () => {
                     </div>
 
                     {/* Contenido del lado derecho */}
-                    <div className="col-sm-7" ref={editRef}>
+                    <div className="col-sm-7 " ref={editRef}>
                         <img
                             src={image_url}
                             alt="Imagen de página de inicio,"
-                            className='img-fluid rounded'
+                            className='img-fluid rounded shadow-lg'
                         />
                     </div>
+                </div>
+                <div className="row">
+                    <HomeTables
+                        totalCursos={cursosActivos}
+                        estudiantesCertificados={aprobadosTotales}
+                    />
                 </div>
             </div>
         </>

@@ -97,7 +97,14 @@ export const login = (email: string, password: string): AppThunk => async dispat
     dispatch(loginSuccess(usuarioObtenido!));
   } catch (error: any) {
     const msg = error.message.replace('Firebase: ', '');
-    dispatch(loginFailure(msg));
+    if(error.message == 'Firebase: Error (auth/invalid-credential).'){
+      dispatch(loginFailure('Las credenciales ingresadas no coinciden, inténtelo de nuevo por favor.'));
+    } else if(msg == 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'){
+      dispatch(loginFailure('El acceso a esta cuenta se ha deshabilitado temporalmente debido a muchos intentos fallidos de inicio de sesión. Puedes restaurarlo inmediatamente restableciendo tu contraseña o puedes volver a intentarlo más tarde.'));
+    } else {
+      dispatch(loginFailure(msg));
+    }
+    
   }
 };
 
@@ -169,7 +176,8 @@ export const signup = (formData: any): AppThunk => async dispatch => {
     //console.log(error.message)
     if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
       dispatch(signupFailure('El correo electrónico ya se encuentra en uso, inténte con otro porfavor.'));
-    }
+    } 
+    
     else{
       dispatch(signupFailure('El correo electrónico está en un formato no permitido, revíselo porfavor.'));
     }
