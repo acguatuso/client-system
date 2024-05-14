@@ -18,33 +18,36 @@ export const AdsSection = () => {
     {about.loading &&  <div>Cargando...</div>}
     {        
         sections.map((element: adsSection)=>{                    
-            return ( 
-                                 
+            return (                                  
                     element.posicion_id  == 1 ?(
-                        <div key={`${element.id}-div1`} className="row mb-3 border">    
+                        <div key={`${element.id}-div1`} className="row mb-1 text-start">    
                             <div className="col">
-                                <img  className='img-thumbnail' src={element.download_url}/>           
-                            </div>            
+                                <img  className='img-fluid' src={element.download_url}/>           
+                            </div>                                       
                             <div className="col">                        
                                 <h3>{element.titulo}</h3>
-                                <h5>{element.subtitulo}</h5>
+                                <p className='lead'><strong>{element.subtitulo}</strong></p>
                                 <p className='lead'>{element.descripcion}</p>
-                            </div>         
-                        </div>                 
+                            </div> 
+                            <hr className='border border-secondary border opacity-10 m-5'/>        
+                        </div>     
+                                 
                     )
                         
                         :
             
                     (    
-                        <div key={`${element.id}-div2`} className="row mb-3 border">
+                        <div key={`${element.id}-div2`} className="row mb-1 text-end">
                             <div className="col">                        
                                 <h3>{element.titulo}</h3>
-                                <h5>{element.subtitulo}</h5>
+                                <p className='lead'><strong>{element.subtitulo}</strong></p>
                                 <p className='lead'>{element.descripcion}</p>
                             </div>
                             <div className="col">        
-                                <img  className='img-thumbnail' src={element.download_url}/>
-                            </div>                
+                                <img  className='img-fluid' src={element.download_url}/>
+                            </div>  
+                            <hr className='border border-secondary border opacity-10 m-5'/>        
+              
                         </div> 
                     )                                           
             )     

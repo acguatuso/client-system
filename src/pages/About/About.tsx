@@ -17,12 +17,10 @@ export const About = () => {
   
   return (
     <>
-      <div className="p-3 mb-2 bg-white text-dark border" id="about-container">
         <UpdateMainSectionModal/>
         <div className="container-fluid">
           <AdsSection />
         </div>
-      </div>
     </>
   )
 }
