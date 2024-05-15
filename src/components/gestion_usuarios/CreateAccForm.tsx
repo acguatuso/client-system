@@ -132,7 +132,7 @@ const CreateAccountForm: React.FC = () => {
     <div>
       <div className="container">
         <div>
-          <img src={logoUrl} alt="Bootstrap" width="200" height="150" />
+          <img src={logoUrl} alt="logo" width="200" height="150" />
           {!user && !loggedIn && (
             <>
               <h2>Bienvenido!</h2>
@@ -239,7 +239,7 @@ const CreateAccountForm: React.FC = () => {
         <>
           <div>
             <label>¿Ya tiene cuenta?</label>
-            <Link to="/client-system/iniciar-sesion">Iniciar Sesión</Link>
+            <Link to="/iniciar-sesion">Iniciar Sesión</Link>
           </div>
         </>
       )}
