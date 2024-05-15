@@ -11,11 +11,11 @@ export const ServicePage = () => {
     dispatch(fetchService())
   },[])
   return (
-    <div className="p-3 mb-2 bg-white text-dark border" id="about-container">        
-      <ServiceMain/>
-      <div className="container-fluid">
-        <ServiceList/>
-      </div>    
-    </div>
+  <>
+    <ServiceMain/>
+    <div className="container-fluid">
+      <ServiceList/>
+    </div>   
+  </>
   )
 }
