@@ -13,12 +13,10 @@ export const Ads = () => {
   
   return (
     <>
-      <div className="p-3 mb-2 bg-white text-dark border" id="about-container">        
         <AdsMain/>
         <div className="container-fluid">
-        <AdsList/>
+        <AdsList/>              
         </div>        
-      </div>
     </>
   )
 }

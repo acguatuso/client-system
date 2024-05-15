@@ -48,7 +48,6 @@ export const MycoursesTable = () => {
         curso.aprobados?.filter((aprobado: string) => {
           console.log(aprobado, idUsuario)
           if(aprobado == idUsuario){
-            console.log('entraaaa')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Aprobado"};
             dataList = [...dataList,courseList] 
             flag = true           
@@ -59,7 +58,6 @@ export const MycoursesTable = () => {
         curso.reprobados?.filter((reprobado: string) => {
           console.log(reprobado, idUsuario)
           if(reprobado == idUsuario){
-            console.log('entra reprobado')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Reprobado"};
             dataList = [...dataList,courseList]
             flag = true
@@ -70,7 +68,6 @@ export const MycoursesTable = () => {
         curso.matriculados?.filter((matriculado: string) => {
           console.log(matriculado, idUsuario)
           if(matriculado == idUsuario){
-            console.log('entra matriculado')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Matriculado"};
             dataList = [...dataList,courseList]
             flag = true
@@ -81,7 +78,6 @@ export const MycoursesTable = () => {
         curso.postulados?.filter((postulado: any) => {
           console.log(postulado.id, idUsuario)
           if(postulado.id == idUsuario){
-            console.log('entra postulado')
             const courseList: userCoursesList = { id: curso.id!, nombre: curso.nombre, horario: curso.horario, download_url: curso.download_url, descripcion: curso.descripcion, modalidad: curso.modalidad, fecha_inicio: curso.fecha_inicio, fecha_finalizacion: curso.fecha_finalizacion, link_plataforma: curso.link_plataforma, estado: "Espera"};
             dataList = [...dataList,courseList]
             flag = true
@@ -116,14 +112,15 @@ export const MycoursesTable = () => {
         {
           name: "Nombre",
           selector: (row: any) => row.nombre,
-          cell: (row: any) => <div className="text-start">{row.nombre}</div>,
-          sortable: true,          
+          cell: (row: any) => <div className="row text-start">{row.nombre}</div>,
+          sortable: true,  
+          grow: 2,
         },
         {
           name: "Horario",
           selector: (row: any) => row.horario,
           cell: (row: any) => (
-            <div className='text-start'>
+            <div className='container-fluid text-start'>
               {row.horario.map((h: any, index: number) => (
               <div key={index} className="row">
                   {h.dia}: {h.hora}
@@ -131,26 +128,28 @@ export const MycoursesTable = () => {
               ))}
             </div>
           ), 
-          sortable: true,                      
+          sortable: true,  
+          grow: 2,    
         },
         {
           name: "Modalidad",
           selector: (row: any) => row.modalidad,
-          cell: (row: any) => (row.modalidad==0 ? <div>Presencial</div> : row.modalidad==1 ? <div>Virtual</div> : row.modalidad==2 ?<div>Mixta</div>:<div>Desconocido</div>),
+          cell: (row: any) => (row.modalidad==0 ? <div className="row">Presencial</div> : row.modalidad==1 ? <div className="row">Virtual</div> : row.modalidad==2 ?<div className="row">Mixta</div>:<div>Desconocido</div>),
           sortable: true,
-        
         },
         {
           name: "Estado",
           selector: (row: any) => row.estado,
-          cell: (row: any) => (<div className="text-start">{row.estado}</div>), 
-          sortable: true
+          cell: (row: any) => (<div className="row text-start">{row.estado}</div>), 
+          sortable: true,
+          grow: 2,
+          
         },
         {
           name: "Ver",
           cell: (row: userCoursesList) => (
             <CourseDetails {...row} />
-          ),
+          ),          
         }        
       ];
     return (
