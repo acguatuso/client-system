@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaBook, FaGraduationCap } from 'react-icons/fa';
-
+import './HomteTables.css'
 
 const HomeTables: React.FC<{ totalCursos: number; estudiantesCertificados: number }> = ({ totalCursos, estudiantesCertificados }) => {
     

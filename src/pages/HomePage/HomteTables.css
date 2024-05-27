@@ -1,7 +1,7 @@
 .custom-card {
-    border: 1.5px solid #4dd46d;
+    border: 1.5px solid #694e79;
     text-decoration: none; 
-    box-shadow: 5px 5px 5px rgba(61, 181, 58, 0.435);
+    box-shadow: 5px 5px 5px rgba(104, 101, 101, 0.267);
 }
 
 .custom-card:hover {
